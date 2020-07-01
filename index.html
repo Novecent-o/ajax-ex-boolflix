@@ -8,15 +8,22 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <!-- HEADER -->
+        <header>
+            <!-- Layout della Navbar -->
+            <nav>
+                <label>Cerca un Film...</label>
+                <input id="input_ricerca" type="text" value="" placeholder="Scrivi qui...">
+                <button id="btn_ricerca">Cerca</button>
+            </nav>
+        </header>
+        <!-- MAIN -->
+        <main>
+            <ul id="stampa_risultato">
 
-        <label>Cerca un Film...</label>
-        <input id="input_ricerca" type="text" value="" placeholder="Scrivi qui...">
-        <button id="btn_ricerca">Cerca</button>
-
-        <ul id="stampa_risultato">
-
-        </ul>
-
+            </ul>
+        </main>
+        <!-- Creazione Template di Handlebar -->
         <script id="film-template" type="text/x-handlebars-template">
             <li class="title">TITOLO: {{title}}</li>
             <li class="title_original">TITOLO ORIGINALE: {{original_title}}</li>
@@ -24,7 +31,6 @@
             <li class="vote">VOTO: {{vote_average}}</li>
             <br>
         </script>
-
 
         <script src="js/script.js" charset="utf-8"></script>
     </body>
