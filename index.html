@@ -11,26 +11,33 @@
         <!-- HEADER -->
         <header>
             <!-- Layout della Navbar -->
-            <nav>
+            <nav class="container_navbar">
                 <label>Cerca un Film...</label>
                 <input id="input_ricerca" type="text" value="" placeholder="Scrivi qui...">
                 <button id="btn_ricerca">Cerca</button>
             </nav>
         </header>
+        <!-- Fine HEADER -->
         <!-- MAIN -->
         <main>
-            <ul id="stampa_risultato">
-
-            </ul>
+            <div id="stampa_risultato" class="container_risultato">
+            </div>
         </main>
+        <!-- Fine MAIN -->
         <!-- Creazione Template di Handlebar -->
         <script id="film-template" type="text/x-handlebars-template">
-            <li class="title">TITOLO: {{title}}</li>
-            <li class="title_original">TITOLO ORIGINALE: {{original_title}}</li>
-            <li class="language_original">LINGUA ORIGINALE: {{original_language}}</li>
-            <li class="vote">VOTO: {{vote_average}}</li>
-            <br>
+            <h3 class="title">{{title}}</h3>
+            <ul>
+                <li class="title_original">TITOLO ORIGINALE: {{original_title}}</li>
+                <li class="language_original">LINGUA ORIGINALE: {{original_language}}</li>
+                <li class="vote">VOTO: {{{vote_average}}}</li>
+            </ul>
         </script>
+
+        <script id="errore-template" type="text/x-handlebars-template">
+            <p class="errore">{{error_msg}}</p>
+        </script>
+
 
         <script src="js/script.js" charset="utf-8"></script>
     </body>

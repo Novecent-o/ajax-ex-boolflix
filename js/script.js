@@ -15,23 +15,30 @@ $(document).ready(function () {
 });
 // Funzione STAMPAFILM che genera una lista di film grazie alla chiamata Ajax alle API di 'themoviedb.org'
 function stampaFilm(queryRisultato) {
-    // Svuoto il valore della ricerca e la stampa della ricerca prima di ogni chiamata Ajax
-    $('#stampa_risultato').text('');
-    $('#input_ricerca').val('');
+    reset();
+    var url = 'https://api.themoviedb.org/3/search/movie';
+    var api_key = '1b18b71d8924533ba2d9001b208ddde7';
     $.ajax({
-        url:"https://api.themoviedb.org/3/search/movie",
+        url: url,
         method:"GET",
         data:{
-            api_key:"1b18b71d8924533ba2d9001b208ddde7",
+            api_key: api_key,
             query:queryRisultato,
             language:"it-IT"
         },
         success:function(data) {
-            var arrayRisultato = data.results;
-            generaFilm(arrayRisultato);
+            var risultatoRicerca = data.results;
+
+            if(risultatoRicerca.length > 0) {
+                generaFilm(risultatoRicerca);
+            } else {
+                var erroreMessaggio = 'La tua ricerca non ha prodotto risultati';
+                erroreDiRicerca(erroreMessaggio);
+            }
         },
         error:function() {
-            alert('Errore');
+            var erroreMessaggio = 'Errore, devi inserire una parola chiave nella ricerca';
+            erroreDiRicerca(erroreMessaggio);
         }
     });
 };
@@ -47,16 +54,67 @@ function generaFilm(arrayRisultato) {
         var votoFilm = singoloRisultato.vote_average;
         var titoloOriginaleFilm = singoloRisultato.original_title;
         var linguaOriginaleFilm = singoloRisultato.original_language;
+        var votoFinale = arrotondaNumero(votoFilm);
+        // var test = creaStella(votoFinale);
         // Creazione della variabile che andrà a popolare il template
         var context = {
             title:titoloFilm,
             original_title:titoloOriginaleFilm,
             original_language:linguaOriginaleFilm,
-            vote_average:votoFilm
+            vote_average:votoFinale
         };
         var html = template(context);
         // Appendo all'Html il risultato ottenuto
         $('#stampa_risultato').append(html);
     }
 }
+// Funzione che fa il RESET della stampa e del valore dell'Input prima di ogni ricerca
+function reset() {
+    // Svuoto il valore della ricerca e la stampa della ricerca prima di ogni chiamata Ajax
+    $('#stampa_risultato').text('');
+    $('#input_ricerca').val('');
+
+}
+// Funzione che stampa il messaggio di ERRORE
+function erroreDiRicerca(messaggioErrore) {
+    var source = $("#errore-template").html();
+    var template = Handlebars.compile(source);
+    var context = {
+        error_msg:messaggioErrore
+    };
+    var html = template(context);
+    $('#stampa_risultato').append(html);
+};
+// Funzione che ARROTONDA il voto decimale in eccesso e lo trasforma in un numero intero in eccesso da 1 a 5
+function arrotondaNumero(votoFilm) {
+    var arrotondato = Math.ceil(votoFilm);
+    var votoStella = arrotondato / 2;
+    if(votoStella % 2 != 0) {
+        var test = Math.ceil(votoStella);
+    } else {
+        return votoStella;
+    }
+    return test;
+};
+// function creaStella(numeroCreato) {
+//     // switch (numeroCreato) {
+//     // case 0: maxNumero = 100;
+//     //   break;
+//     // case 1: maxNumero = 80;
+//     // break;
+//     // case 2: maxNumero = 50;
+//     //   break;
+//     var stella = '';
+//     if(numeroCreato === 1) {
+//         stella =
+//     } else if () {
+//
+//     } else if () {
+//
+//     } else if () {
+//
+//     } else if () {
+//
+//     }
+// }
 // FINE
