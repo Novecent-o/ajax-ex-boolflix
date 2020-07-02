@@ -4,20 +4,54 @@ $(document).ready(function () {
     $(document).on('click', '#btn_ricerca', function() {
         var valoreInput = $('#input_ricerca').val();
         stampaFilm(valoreInput);
+        stampaSerieTv(valoreInput);
     });
     // Funzione KEYPRESS che stampa la ricerca al tasto 'Invio'
     $('#input_ricerca').keypress(function(event) {
         if(event.which === 13 || event.keycode === 13) {
             var valoreInput = $('#input_ricerca').val();
             stampaFilm(valoreInput);
+            stampaSerieTv(valoreInput);
         }
     });
 });
+function stampaSerieTv(query) {
+    reset();
+
+    var url = 'https://api.themoviedb.org/3/search/tv';
+    var api_key = '1b18b71d8924533ba2d9001b208ddde7';
+
+    $.ajax({
+        url: url,
+        method:"GET",
+        data:{
+            api_key: api_key,
+            query:query,
+            language:"it-IT"
+        },
+        success:function(data) {
+            var risultatoRicerca = data.results;
+
+            if(risultatoRicerca.length > 0) {
+                generaFilm(risultatoRicerca);
+            } else {
+                var erroreMessaggio = 'La tua ricerca non ha prodotto risultati';
+                erroreDiRicerca(erroreMessaggio);
+            }
+        },
+        error:function() {
+            var erroreMessaggio = 'Errore, devi inserire una parola chiave nella ricerca';
+            erroreDiRicerca(erroreMessaggio);
+        }
+    });
+};
 // Funzione STAMPAFILM che genera una lista di film grazie alla chiamata Ajax alle API di 'themoviedb.org'
 function stampaFilm(queryRisultato) {
     reset();
+
     var url = 'https://api.themoviedb.org/3/search/movie';
     var api_key = '1b18b71d8924533ba2d9001b208ddde7';
+
     $.ajax({
         url: url,
         method:"GET",
@@ -51,8 +85,10 @@ function generaFilm(arrayRisultato) {
     for (var i = 0; i < arrayRisultato.length; i++) {
         var singoloRisultato = arrayRisultato[i];
         var titoloFilm = singoloRisultato.title;
+        var titoloSerieTv = singoloRisultato.name;
         var votoFilm = singoloRisultato.vote_average;
         var titoloOriginaleFilm = singoloRisultato.original_title;
+        var titoloOriginaleSerieTv = singoloRisultato.original_name;
         var linguaOriginaleFilm = singoloRisultato.original_language;
         var votoFinale = arrotondaNumero(votoFilm);
         var stella = numeroStelle(votoFinale);
@@ -61,8 +97,10 @@ function generaFilm(arrayRisultato) {
         var context = {
             title:titoloFilm,
             original_title:titoloOriginaleFilm,
-            original_language:linguaOriginaleFilm,
-            vote_average:stella
+            original_language:creaLingua(linguaOriginaleFilm),
+            vote_average:stella,
+            original_name:titoloOriginaleSerieTv,
+            name:titoloSerieTv
         };
         var html = template(context);
         // Appendo all'Html il risultato ottenuto
@@ -107,19 +145,13 @@ function numeroStelle(votoFinale) {
         }
     }
     return stelline;
+};
+function creaLingua(linguaOriginale) {
+  var bandiere = ['es', 'it','de','en','fr'];
+  if (bandiere.includes(linguaOriginale)) {
+    return '<img src="img/' + linguaOriginale + '.png">'
+  } else {
+    return linguaOriginale;
+  }
 }
-function sceltaBandiera() {
-    var source = $("#bandiera-template").html();
-    var template = Handlebars.compile(source);
-
-    var context = {
-        error_msg:messaggioErrore
-    };
-    var html = template(context);
-    $('#stampa_risultato').append(html);
-
-}
-var bandiera = $('#container_bandiera');
-console.log(bandiera);
-
 // FINE

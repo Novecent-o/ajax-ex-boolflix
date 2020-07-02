@@ -28,10 +28,10 @@
 
         <!-- Creazione Template di Handlebar -->
         <script id="film-template" type="text/x-handlebars-template">
-            <h3 class="title">{{title}}</h3>
+            <h3 class="title">{{title}}{{name}}</h3>
             <ul>
-                <li class="title_original">TITOLO ORIGINALE: {{original_title}}</li>
-                <li class="language_original">LINGUA ORIGINALE: <img src="img/{{original_language}}.png"/></li>
+                <li class="title_original">TITOLO ORIGINALE: {{original_title}}{{original_name}}</li>
+                <li class="language_original">LINGUA ORIGINALE: {{{original_language}}}</li>
                 <li class="vote">VOTO: {{{vote_average}}}</li>
             </ul>
         </script>
