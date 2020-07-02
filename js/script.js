@@ -15,6 +15,7 @@ $(document).ready(function () {
         }
     });
 });
+// Funzione STAMPASERIETV
 function stampaSerieTv(query) {
     reset();
 
@@ -135,6 +136,7 @@ function arrotondaNumero(votoFilm) {
     }
     return test;
 };
+// Funzione che sostituisce il valore ARROTONDATO con il numero di stelline corrispondenti al valore
 function numeroStelle(votoFinale) {
     var stelline = '';
     for (var i = 0; i < 5; i++) {
@@ -146,6 +148,7 @@ function numeroStelle(votoFinale) {
     }
     return stelline;
 };
+// Funzione che stampa le bandiere 
 function creaLingua(linguaOriginale) {
   var bandiere = ['es', 'it','de','en','fr'];
   if (bandiere.includes(linguaOriginale)) {
