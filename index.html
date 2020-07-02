@@ -10,11 +10,6 @@
     </head>
     <body>
         <div id="container_bandiera">
-            <img class="de" data-bandiera="de" src="img/de.png" alt="">
-            <img class="es" data-bandiera="es" src="img/es.png" alt="">
-            <img class="fr" data-bandiera="fr" src="img/fr.png" alt="">
-            <img class="it" data-bandiera="it" src="img/it.png" alt="">
-            <img class="us" data-bandiera="us" src="img/us.png" alt="">
         </div>
         <!-- HEADER -->
         <header>
@@ -32,6 +27,7 @@
             </div>
         </main>
         <!-- Fine MAIN -->
+
         <!-- Creazione Template di Handlebar -->
         <script id="film-template" type="text/x-handlebars-template">
             <h3 class="title">{{title}}</h3>
@@ -44,6 +40,14 @@
 
         <script id="errore-template" type="text/x-handlebars-template">
             <p class="errore">{{error_msg}}</p>
+        </script>
+
+        <script id="bandiera-template" type="text/x-handlebars-template">
+            <img class="de" data-bandiera="de" src="img/de.png" alt="">
+            <img class="es" data-bandiera="es" src="img/es.png" alt="">
+            <img class="fr" data-bandiera="fr" src="img/fr.png" alt="">
+            <img class="it" data-bandiera="it" src="img/it.png" alt="">
+            <img class="us" data-bandiera="us" src="img/us.png" alt="">
         </script>
 
         <script src="js/script.js" charset="utf-8"></script>
