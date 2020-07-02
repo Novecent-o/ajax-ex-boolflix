@@ -1,3 +1,4 @@
+// INIZIO
 $(document).ready(function () {
     // Funzione CLICK che stampa la ricerca al Click
     $(document).on('click', '#btn_ricerca', function() {
@@ -58,3 +59,4 @@ function generaFilm(arrayRisultato) {
         $('#stampa_risultato').append(html);
     }
 }
+// FINE
