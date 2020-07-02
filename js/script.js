@@ -55,11 +55,7 @@ function generaFilm(arrayRisultato) {
         var titoloOriginaleFilm = singoloRisultato.original_title;
         var linguaOriginaleFilm = singoloRisultato.original_language;
         var votoFinale = arrotondaNumero(votoFilm);
-        var bandiera = $('#container_bandiera');
-        console.log(bandiera);
-        // if(linguaOriginaleFilm === ) {
-        //
-        // }
+        var stella = numeroStelle(votoFinale);
 
         // Creazione della variabile che andrà a popolare il template
         var context = {
@@ -111,6 +107,19 @@ function numeroStelle(votoFinale) {
         }
     }
     return stelline;
+}
+function sceltaBandiera() {
+    var source = $("#bandiera-template").html();
+    var template = Handlebars.compile(source);
+
+    var context = {
+        error_msg:messaggioErrore
+    };
+    var html = template(context);
+    $('#stampa_risultato').append(html);
 
 }
+var bandiera = $('#container_bandiera');
+console.log(bandiera);
+
 // FINE
