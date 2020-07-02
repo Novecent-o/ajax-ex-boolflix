@@ -55,13 +55,18 @@ function generaFilm(arrayRisultato) {
         var titoloOriginaleFilm = singoloRisultato.original_title;
         var linguaOriginaleFilm = singoloRisultato.original_language;
         var votoFinale = arrotondaNumero(votoFilm);
-        // var test = creaStella(votoFinale);
+        var bandiera = $('#container_bandiera');
+        console.log(bandiera);
+        // if(linguaOriginaleFilm === ) {
+        //
+        // }
+
         // Creazione della variabile che andrà a popolare il template
         var context = {
             title:titoloFilm,
             original_title:titoloOriginaleFilm,
             original_language:linguaOriginaleFilm,
-            vote_average:votoFinale
+            vote_average:stella
         };
         var html = template(context);
         // Appendo all'Html il risultato ottenuto
@@ -96,25 +101,16 @@ function arrotondaNumero(votoFilm) {
     }
     return test;
 };
-// function creaStella(numeroCreato) {
-//     // switch (numeroCreato) {
-//     // case 0: maxNumero = 100;
-//     //   break;
-//     // case 1: maxNumero = 80;
-//     // break;
-//     // case 2: maxNumero = 50;
-//     //   break;
-//     var stella = '';
-//     if(numeroCreato === 1) {
-//         stella =
-//     } else if () {
-//
-//     } else if () {
-//
-//     } else if () {
-//
-//     } else if () {
-//
-//     }
-// }
+function numeroStelle(votoFinale) {
+    var stelline = '';
+    for (var i = 0; i < 5; i++) {
+        if(i < votoFinale) {
+            stelline += '<i class="fas fa-star"></i>';
+        } else {
+            stelline += '<i class="far fa-star"></i>';
+        }
+    }
+    return stelline;
+
+}
 // FINE
