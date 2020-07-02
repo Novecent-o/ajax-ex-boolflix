@@ -9,8 +9,6 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div id="container_bandiera">
-        </div>
         <!-- HEADER -->
         <header>
             <!-- Layout della Navbar -->
@@ -33,21 +31,13 @@
             <h3 class="title">{{title}}</h3>
             <ul>
                 <li class="title_original">TITOLO ORIGINALE: {{original_title}}</li>
-                <li class="language_original">LINGUA ORIGINALE: {{original_language}}</li>
+                <li class="language_original">LINGUA ORIGINALE: <img src="img/{{original_language}}.png"/></li>
                 <li class="vote">VOTO: {{{vote_average}}}</li>
             </ul>
         </script>
 
         <script id="errore-template" type="text/x-handlebars-template">
             <p class="errore">{{error_msg}}</p>
-        </script>
-
-        <script id="bandiera-template" type="text/x-handlebars-template">
-            <img class="de" data-bandiera="de" src="img/de.png" alt="">
-            <img class="es" data-bandiera="es" src="img/es.png" alt="">
-            <img class="fr" data-bandiera="fr" src="img/fr.png" alt="">
-            <img class="it" data-bandiera="it" src="img/it.png" alt="">
-            <img class="us" data-bandiera="us" src="img/us.png" alt="">
         </script>
 
         <script src="js/script.js" charset="utf-8"></script>
