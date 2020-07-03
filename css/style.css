@@ -51,7 +51,6 @@ main {
     width: 80%;
     min-height: 100vh;
     margin: 0 auto;
-
 }
 
 .card_film {
@@ -81,6 +80,7 @@ li img {
     overflow: auto;
     padding: 10px;
 }
+
 .hidden {
     display: none;
 }

@@ -16,6 +16,18 @@ $(document).ready(function () {
             stampaFilm(valoreInput, 'tv');
         }
     });
+    $(document).on('mouseenter','.card_film',
+            function() {
+                $(this).children('.card_poster').addClass('hidden');
+                $(this).children('.card_info').removeClass('hidden');
+            }
+    );
+    $(document).on('mouseleave','.card_film',
+            function() {
+                $(this).children('.card_info').addClass('hidden');
+                $(this).children('.card_poster').removeClass('hidden');
+            }
+    );
 });
 // Funzione STAMPAFILM che genera una lista di film grazie alla chiamata Ajax alle API di 'themoviedb.org'
 function stampaFilm(queryRisultato, type) {
