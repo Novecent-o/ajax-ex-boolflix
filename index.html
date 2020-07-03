@@ -2,20 +2,21 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Boolfix di Ivan</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="css/style.css">
+        <title>Boolfix di Ivan</title>
     </head>
     <body>
         <!-- HEADER -->
         <header>
             <!-- Layout della Navbar -->
             <nav class="container_navbar">
-                <label>Cerca un Film...</label>
+                <!-- <label>Cerca un Film...</label> -->
                 <input id="input_ricerca" type="text" value="" placeholder="Scrivi qui...">
-                <button id="btn_ricerca">Cerca</button>
+                <!-- <button id="btn_ricerca">Cerca</button> -->
             </nav>
         </header>
         <!-- Fine HEADER -->
@@ -28,12 +29,15 @@
 
         <!-- Creazione Template di Handlebar -->
         <script id="film-template" type="text/x-handlebars-template">
-            <h3 class="title">{{title}}{{name}}</h3>
-            <ul>
-                <li class="title_original">TITOLO ORIGINALE: {{original_title}}{{original_name}}</li>
-                <li class="language_original">LINGUA ORIGINALE: {{{original_language}}}</li>
-                <li class="vote">VOTO: {{{vote_average}}}</li>
-            </ul>
+            <div class="scheda_film">{{{poster}}}
+                <h3 class="title">{{title}}{{name}}</h3>
+                <ul>
+                    <li class="title_original">TITOLO ORIGINALE: {{original_title}}{{original_name}}</li>
+                    <li class="language_original">LINGUA ORIGINALE: {{{original_language}}}</li>
+                    <li class="vote">VOTO: {{{vote_average}}}</li>
+                    <li class="overview">INFO: {{overview}}</li>
+                </ul>
+            </div>
         </script>
 
         <script id="errore-template" type="text/x-handlebars-template">

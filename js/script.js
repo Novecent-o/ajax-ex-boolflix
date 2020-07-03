@@ -1,56 +1,30 @@
 // INIZIO
 $(document).ready(function () {
     // Funzione CLICK che stampa la ricerca al Click
-    $(document).on('click', '#btn_ricerca', function() {
-        var valoreInput = $('#input_ricerca').val();
-        stampaFilm(valoreInput);
-        stampaSerieTv(valoreInput);
-    });
+    // $(document).on('click', '#btn_ricerca', function() {
+    //     var valoreInput = $('#input_ricerca').val();
+    //     reset();
+    //     stampaFilm(valoreInput, 'movies');
+    //     stampaFilm(valoreInput, 'tv');
+    // });
     // Funzione KEYPRESS che stampa la ricerca al tasto 'Invio'
     $('#input_ricerca').keypress(function(event) {
         if(event.which === 13 || event.keycode === 13) {
             var valoreInput = $('#input_ricerca').val();
-            stampaFilm(valoreInput);
-            stampaSerieTv(valoreInput);
+            reset();
+            stampaFilm(valoreInput, 'movies');
+            stampaFilm(valoreInput, 'tv');
         }
     });
 });
-// Funzione STAMPASERIETV
-function stampaSerieTv(query) {
-    reset();
-
-    var url = 'https://api.themoviedb.org/3/search/tv';
-    var api_key = '1b18b71d8924533ba2d9001b208ddde7';
-
-    $.ajax({
-        url: url,
-        method:"GET",
-        data:{
-            api_key: api_key,
-            query:query,
-            language:"it-IT"
-        },
-        success:function(data) {
-            var risultatoRicerca = data.results;
-
-            if(risultatoRicerca.length > 0) {
-                generaFilm(risultatoRicerca);
-            } else {
-                var erroreMessaggio = 'La tua ricerca non ha prodotto risultati';
-                erroreDiRicerca(erroreMessaggio);
-            }
-        },
-        error:function() {
-            var erroreMessaggio = 'Errore, devi inserire una parola chiave nella ricerca';
-            erroreDiRicerca(erroreMessaggio);
-        }
-    });
-};
 // Funzione STAMPAFILM che genera una lista di film grazie alla chiamata Ajax alle API di 'themoviedb.org'
-function stampaFilm(queryRisultato) {
-    reset();
+function stampaFilm(queryRisultato, type) {
 
-    var url = 'https://api.themoviedb.org/3/search/movie';
+    if(type === 'movies') {
+        var url = 'https://api.themoviedb.org/3/search/movie';
+    } else {
+        url = 'https://api.themoviedb.org/3/search/tv'
+    }
     var api_key = '1b18b71d8924533ba2d9001b208ddde7';
 
     $.ajax({
@@ -67,7 +41,11 @@ function stampaFilm(queryRisultato) {
             if(risultatoRicerca.length > 0) {
                 generaFilm(risultatoRicerca);
             } else {
-                var erroreMessaggio = 'La tua ricerca non ha prodotto risultati';
+                if(type === 'movies') {
+                    var erroreMessaggio = 'La tua ricerca non ha prodotto risultati nella categoria dei film';
+                } else {
+                    erroreMessaggio = 'La tua ricerca non ha prodotto risultati nella categoria della Serie Tv';
+                }
                 erroreDiRicerca(erroreMessaggio);
             }
         },
@@ -76,8 +54,7 @@ function stampaFilm(queryRisultato) {
             erroreDiRicerca(erroreMessaggio);
         }
     });
-};
-// Funzione che GENERA una lista di risultati sui film
+};// Funzione che GENERA una lista di risultati sui film e serie TV
 function generaFilm(arrayRisultato) {
     // Struttura Handlebars
     var source = $("#film-template").html();
@@ -91,6 +68,8 @@ function generaFilm(arrayRisultato) {
         var titoloOriginaleFilm = singoloRisultato.original_title;
         var titoloOriginaleSerieTv = singoloRisultato.original_name;
         var linguaOriginaleFilm = singoloRisultato.original_language;
+        var poster = singoloRisultato.poster_path;
+        var infoFilm = singoloRisultato.overview;
         var votoFinale = arrotondaNumero(votoFilm);
         var stella = numeroStelle(votoFinale);
 
@@ -101,7 +80,9 @@ function generaFilm(arrayRisultato) {
             original_language:creaLingua(linguaOriginaleFilm),
             vote_average:stella,
             original_name:titoloOriginaleSerieTv,
-            name:titoloSerieTv
+            name:titoloSerieTv,
+            poster:'<img src="https://image.tmdb.org/t/p/w342' + poster + '"/>',
+            overview:infoFilm
         };
         var html = template(context);
         // Appendo all'Html il risultato ottenuto
@@ -148,9 +129,9 @@ function numeroStelle(votoFinale) {
     }
     return stelline;
 };
-// Funzione che stampa le bandiere 
+// Funzione che stampa le bandiere
 function creaLingua(linguaOriginale) {
-  var bandiere = ['es', 'it','de','en','fr'];
+  var bandiere = ['es','it','de','en','fr'];
   if (bandiere.includes(linguaOriginale)) {
     return '<img src="img/' + linguaOriginale + '.png">'
   } else {
