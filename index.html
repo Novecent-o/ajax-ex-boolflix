@@ -2,41 +2,60 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Boolfix di Ivan</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="css/style.css">
-        <title>Boolfix di Ivan</title>
     </head>
     <body>
         <!-- HEADER -->
         <header>
             <!-- Layout della Navbar -->
             <nav class="container_navbar">
-                <!-- <label>Cerca un Film...</label> -->
-                <input id="input_ricerca" type="text" value="" placeholder="Scrivi qui...">
-                <!-- <button id="btn_ricerca">Cerca</button> -->
+                <!-- Titolo o Logo -->
+                <h1>BOOLFLIX</h1>
+                <!-- Boolstrap fa la Input -->
+                <div class="form-inline my-2 my-lg-0">
+                    <input id="input_ricerca" class="form-control mr-sm-2" type="search" placeholder="Scrivi qui..." aria-label="Search">
+                </div>
             </nav>
         </header>
         <!-- Fine HEADER -->
+
         <!-- MAIN -->
         <main>
-            <div id="stampa_risultato" class="container_risultato">
+            <div id="stampa_risultato" class="container_film_serieTV">
+                <!-- Qui stampo il Template dei film/serie tv -->
             </div>
         </main>
         <!-- Fine MAIN -->
 
         <!-- Creazione Template di Handlebar -->
         <script id="film-template" type="text/x-handlebars-template">
-            <div class="scheda_film">{{{poster}}}
-                <h3 class="title">{{title}}{{name}}</h3>
-                <ul>
-                    <li class="title_original">TITOLO ORIGINALE: {{original_title}}{{original_name}}</li>
-                    <li class="language_original">LINGUA ORIGINALE: {{{original_language}}}</li>
-                    <li class="vote">VOTO: {{{vote_average}}}</li>
-                    <li class="overview">INFO: {{overview}}</li>
-                </ul>
+            <div class="card_film">
+                <div class="card_poster">
+                    {{{poster}}}
+                </div>
+                <div class="card_info hidden">
+                    <h4 class="title">{{title}}{{name}}</h4>
+                    <ul>
+                        <li class="title_original">
+                            TITOLO ORIGINALE: {{original_title}}{{original_name}}
+                        </li>
+                        <li class="language_original">
+                            LINGUA ORIGINALE: {{{original_language}}}
+                        </li>
+                        <li class="vote">
+                            VOTO: {{{vote_average}}}
+                        </li>
+                        <li class="overview">
+                            INFO: <p>{{overview}}</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </script>
 

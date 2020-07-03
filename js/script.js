@@ -81,7 +81,7 @@ function generaFilm(arrayRisultato) {
             vote_average:stella,
             original_name:titoloOriginaleSerieTv,
             name:titoloSerieTv,
-            poster:'<img src="https://image.tmdb.org/t/p/w342' + poster + '"/>',
+            poster:'<img src="https://image.tmdb.org/t/p/w342' + poster + '">',
             overview:infoFilm
         };
         var html = template(context);

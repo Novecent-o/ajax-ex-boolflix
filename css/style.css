@@ -4,6 +4,83 @@
     box-sizing: border-box;
 }
 
+img {
+    width: 100%;
+    height: 513px;
+}
+
+h4 {
+    text-transform: uppercase;
+}
+
+li {
+    list-style-type: none;
+    margin-bottom: 4px;
+}
+
+p {
+    font-size: 13px;
+}
+
+header {
+    background-color: black;
+}
+
+.container_navbar {
+    width: 90%;
+    margin: 0 auto;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container_navbar h1 {
+    color: red;
+}
+
+main {
+    background-color: #434343;
+}
+
+.container_film_serieTV {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+    min-height: 100vh;
+    margin: 0 auto;
+
+}
+
+.card_film {
+    text-align: center;
+    margin: 30px;
+    width: 342px;
+    height: 513px;
+}
+
+.card_poster,
+.card_info {
+    width: 100%;
+    height: 100%;
+}
+li img {
+    width: 33px;
+    height: 20px;
+}
+
+.vote i {
+    color: yellow;
+}
+
+.card_info {
+    background-color: black;
+    color: white;
+    overflow: auto;
+    padding: 10px;
+}
 .hidden {
     display: none;
 }
