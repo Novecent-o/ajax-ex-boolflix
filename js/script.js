@@ -18,9 +18,6 @@ $(document).ready(function () {
     });
     $(document).on('mouseenter','.card_film',
             function() {
-                // if($('.card_poster').val()) {
-                //
-                // }
                 $(this).children('.card_poster').addClass('hidden');
                 $(this).children('.card_info').removeClass('hidden');
             }
@@ -84,7 +81,6 @@ function generaFilm(arrayRisultato) {
         var titoloOriginaleSerieTv = singoloRisultato.original_name;
         var linguaOriginaleFilm = singoloRisultato.original_language;
         var poster = singoloRisultato.poster_path;
-        var test = '<img src="https://image.tmdb.org/t/p/w342' + poster + '">';
         var infoFilm = singoloRisultato.overview;
         var votoFinale = arrotondaNumero(votoFilm);
         var stella = numeroStelle(votoFinale);
@@ -97,7 +93,7 @@ function generaFilm(arrayRisultato) {
             vote_average:stella,
             original_name:titoloOriginaleSerieTv,
             name:titoloSerieTv,
-            poster:test,
+            poster:stampaInfo(poster),
             overview:infoFilm
         };
         var html = template(context);
@@ -155,19 +151,14 @@ function creaLingua(linguaOriginale) {
   }
 }
 // Funziona che stampa le info in mancanza del poster
-// function stampaInfo(test) {
-//     var test = '';
-//     var test2 = $('.card_poster img');
-//
-//     if(test2 === '<img src="https://image.tmdb.org/t/p/w342null">') {
-//         // $('.card_poster').addClass('hidden');
-//         return test;
-//     } else {
-//         test2.show();
-//         return test2;
-//     }
-//     // } else {
-//     //     // $('.card_poster').val('<img src="https://image.tmdb.org/t/p/w342' + poster + '">');
-//     // }
-// }
+function stampaInfo(poster) {
+    if (poster === null) {
+        var tagImg = '<img src="img/no-immagine.png" alt="no-immagine">';
+    } else {
+        var urlBase = 'https://image.tmdb.org/t/p/w342';
+        var urlImg = urlBase + poster;
+        var tagImg = '<img src="' + urlImg + '">'
+    }
+    return tagImg;
+}
 // FINE
