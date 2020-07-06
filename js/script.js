@@ -93,7 +93,7 @@ function generaFilm(arrayRisultato) {
             vote_average:stella,
             original_name:titoloOriginaleSerieTv,
             name:titoloSerieTv,
-            poster:stampaInfo(poster),
+            poster:stampaInfo(poster, titoloFilm),
             overview:infoFilm
         };
         var html = template(context);
@@ -151,13 +151,13 @@ function creaLingua(linguaOriginale) {
   }
 }
 // Funziona che stampa le info in mancanza del poster
-function stampaInfo(poster) {
+function stampaInfo(poster, titoloFilm) {
     if (poster === null) {
         var tagImg = '<img src="img/no-immagine.png" alt="no-immagine">';
     } else {
         var urlBase = 'https://image.tmdb.org/t/p/w342';
         var urlImg = urlBase + poster;
-        var tagImg = '<img src="' + urlImg + '">'
+        var tagImg = '<img src="' + urlImg + '"' + ' alt="' + titoloFilm + '">'
     }
     return tagImg;
 }
