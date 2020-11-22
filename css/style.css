@@ -1,3 +1,5 @@
+/* Regole Generali */
+
 * {
     margin: 0;
     padding: 0;
@@ -22,6 +24,12 @@ p {
     font-size: 13px;
 }
 
+.hidden {
+    display: none;
+}
+
+/* HEADER */
+
 header {
     background-color: black;
 }
@@ -43,6 +51,10 @@ header {
     height: 90px;
 }
 
+/* Fine HEADER */
+
+/* MAIN */
+
 main {
     background-color: #434343;
 }
@@ -59,8 +71,9 @@ main {
 .card_film {
     text-align: center;
     margin: 30px 0;
-    flex-basis: 342px;
+    width: 342px;
     height: 513px;
+    border: 2px solid red;
 }
 
 .card_poster,
@@ -84,6 +97,9 @@ li img {
     padding: 10px;
 }
 
-.hidden {
-    display: none;
+.errore {
+    font-size: 30px;
+    color: white;
 }
+
+/* Fine MAIN */

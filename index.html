@@ -2,9 +2,9 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Boolfix di Ivan</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -30,15 +30,33 @@
 
         <!-- MAIN -->
         <main>
-            <div id="stampa_risultato" class="container_film_serieTV">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="stampa_risultato" class="container_film_serieTV">
 
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <!-- Fine MAIN -->
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Fine FOOTER -->
         
         <!-- Creazione Template di Handlebar -->
         <script id="film-template" type="text/x-handlebars-template">
-            <div class="card_film">
+            <div class="card_film mx-3">
                 <div class="card_poster">
                     {{{poster}}}
                 </div>

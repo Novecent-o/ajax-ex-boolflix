@@ -1,5 +1,7 @@
-// INIZIO
+// INIZIO script.js
+
 $(document).ready(function () {
+
     // Funzione CLICK che stampa la ricerca al Click
     // $(document).on('click', '#btn_ricerca', function() {
     //     var valoreInput = $('#input_ricerca').val();
@@ -7,6 +9,7 @@ $(document).ready(function () {
     //     stampaFilm(valoreInput, 'movies');
     //     stampaFilm(valoreInput, 'tv');
     // });
+
     // Funzione KEYPRESS che stampa la ricerca al tasto 'Invio'
     $('#input_ricerca').keypress(function(event) {
         if(event.which === 13 || event.keycode === 13) {
@@ -16,19 +19,52 @@ $(document).ready(function () {
             stampaFilm(valoreInput, 'tv');
         }
     });
+
     $(document).on('mouseenter','.card_film',
             function() {
                 $(this).children('.card_poster').addClass('hidden');
                 $(this).children('.card_info').removeClass('hidden');
             }
     );
+
     $(document).on('mouseleave','.card_film',
             function() {
                 $(this).children('.card_info').addClass('hidden');
                 $(this).children('.card_poster').removeClass('hidden');
             }
     );
+
+    // $('#demo').pagination({
+    //     dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 195],
+    //     callback: function(data, pagination) {
+    //         // template method of yourself
+    //         var html = template(data);
+    //         dataContainer.html(html);
+    //     }
+    // })
+
+    // $('#demo').pagination({
+    //     dataSource: 'https://api.flickr.com/services/feeds/photos_public.gne?tags=cat&tagmode=any&format=json&jsoncallback=?',
+    //     locator: 'items',
+    //     totalNumber: 120,
+    //     pageSize: 20,
+    //     ajax: {
+    //         beforeSend: function() {
+    //             dataContainer.html('Loading data from flickr.com ...');
+    //         }
+    //     },
+    //     callback: function(data, pagination) {
+    //         // template method of yourself
+    //         var html = template(data);
+    //         dataContainer.html(html);
+    //     }
+    // })
+
+
+
+
 });
+
 // Funzione STAMPAFILM che genera una lista di film grazie alla chiamata Ajax alle API di 'themoviedb.org'
 function stampaFilm(queryRisultato, type) {
 
@@ -66,7 +102,9 @@ function stampaFilm(queryRisultato, type) {
             erroreDiRicerca(erroreMessaggio);
         }
     });
-};// Funzione che GENERA una lista di risultati sui film e serie TV
+};
+
+// Funzione che GENERA una lista di risultati sui film e serie TV
 function generaFilm(arrayRisultato) {
     // Struttura Handlebars
     var source = $("#film-template").html();
@@ -101,13 +139,14 @@ function generaFilm(arrayRisultato) {
         $('#stampa_risultato').append(html);
     }
 }
+
 // Funzione che fa il RESET della stampa e del valore dell'Input prima di ogni ricerca
 function reset() {
     // Svuoto il valore della ricerca e la stampa della ricerca prima di ogni chiamata Ajax
     $('#stampa_risultato').text('');
     $('#input_ricerca').val('');
-
 }
+
 // Funzione che stampa il messaggio di ERRORE
 function erroreDiRicerca(messaggioErrore) {
     var source = $("#errore-template").html();
@@ -118,6 +157,7 @@ function erroreDiRicerca(messaggioErrore) {
     var html = template(context);
     $('#stampa_risultato').append(html);
 };
+
 // Funzione che ARROTONDA il voto decimale in eccesso e lo trasforma in un numero intero in eccesso da 1 a 5
 function arrotondaNumero(votoFilm) {
     var arrotondato = Math.ceil(votoFilm);
@@ -129,6 +169,7 @@ function arrotondaNumero(votoFilm) {
     }
     return test;
 };
+
 // Funzione che sostituisce il valore ARROTONDATO con il numero di stelline corrispondenti al valore
 function numeroStelle(votoFinale) {
     var stelline = '';
@@ -141,6 +182,7 @@ function numeroStelle(votoFinale) {
     }
     return stelline;
 };
+
 // Funzione che stampa le bandiere
 function creaLingua(linguaOriginale) {
   var bandiere = ['es','it','de','en','fr'];
@@ -150,6 +192,7 @@ function creaLingua(linguaOriginale) {
     return linguaOriginale;
   }
 }
+
 // Funziona che stampa le info in mancanza del poster
 function stampaInfo(poster, titoloFilm) {
     if (poster === null) {
@@ -161,4 +204,5 @@ function stampaInfo(poster, titoloFilm) {
     }
     return tagImg;
 }
+
 // FINE
