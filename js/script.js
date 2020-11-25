@@ -90,9 +90,9 @@ function stampaFilm(queryRisultato, type) {
                 generaFilm(risultatoRicerca);
             } else {
                 if(type === 'movies') {
-                    var erroreMessaggio = 'La tua ricerca non ha prodotto risultati nella categoria dei film';
+                    var erroreMessaggio = 'La tua ricerca non ha prodotto risultati nella categoria dei Film';
                 } else {
-                    erroreMessaggio = 'La tua ricerca non ha prodotto risultati nella categoria della Serie Tv';
+                    erroreMessaggio = 'La tua ricerca non ha prodotto risultati nella categoria delle Serie Tv';
                 }
                 erroreDiRicerca(erroreMessaggio);
             }
@@ -196,7 +196,7 @@ function creaLingua(linguaOriginale) {
 // Funziona che stampa le info in mancanza del poster
 function stampaInfo(poster, titoloFilm) {
     if (poster === null) {
-        var tagImg = '<img src="img/no-immagine.png" alt="no-immagine">';
+        var tagImg = '<img src="img/no-immagine.jpg" alt="no-immagine">';
     } else {
         var urlBase = 'https://image.tmdb.org/t/p/w342';
         var urlImg = urlBase + poster;

@@ -74,6 +74,7 @@ main {
     width: 342px;
     height: 513px;
     border: 2px solid red;
+    cursor: pointer;
 }
 
 .card_poster,
@@ -100,6 +101,10 @@ li img {
 .errore {
     font-size: 30px;
     color: white;
+    margin-top: 30px;
+    width: 70%;
+    height: 53px;
+    border: 2px solid white;
 }
 
 /* Fine MAIN */
